@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -x
 
 cd user_ubuntu
 docker build -t sconaway/user_ubuntu .
