@@ -9,4 +9,4 @@ RUN sudo apt-get install curl wget git -y
 
 RUN echo Normal User Works
 
-RUN sudo echo sudo User Works
+RUN sudo echo Sudo User Works
