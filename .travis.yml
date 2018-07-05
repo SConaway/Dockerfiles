@@ -4,43 +4,42 @@ language: generic
 services:
   - docker
 
-# jobs:
-#   include:
-#     - stage: Build
-#       script:
-#        - cd user_ubuntu
-#        - docker build -t sconaway/user_ubuntu .
-#        - docker run -d --name="uu" sconaway/user_ubuntu bash
-#        - sleep 5
-#        - docker logs uu
-#        - docker stop uu
-#        - docker images
-#
-#     - stage: Build and test
-#       script:
-#        - cd user_ubuntu
-#        - docker build -t user_ubuntu .
-#        - cd ..
-#        - cd user_ubuntu_test
-#        - docker build -t user_ubuntu_test .
-#        - docker run -d --name="uut" user_ubuntu_test
-#        - sleep 120
-#        - docker logs uut
-#        - docker stop uut
-#        - docker images
-#
-#     - stage: Build then Deploy to Docker Hub
-#       script:
-#         - cd user_ubuntu
-#         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-#         - docker build -t sconaway/user_ubuntu .
-#         - docker push sconaway/user_ubuntu
-#         - docker images
+jobs:
+  include:
+    - stage: Build
+      script:
+       - cd user_ubuntu
+       - docker build -t sconaway/user_ubuntu .
+       - docker run -d --name="uu" sconaway/user_ubuntu bash
+       - sleep 5
+       - docker logs uu
+       - docker stop uu
+       - docker images
+
+    - stage: Build and test
+      script:
+       - cd user_ubuntu
+       - docker build -t user_ubuntu .
+       - cd ..
+       - cd user_ubuntu_test
+       - docker build -t user_ubuntu_test .
+       - docker run -d --name="uut" user_ubuntu_test
+       - sleep 120
+       - docker logs uut
+       - docker stop uut
+       - docker images
+
+    - stage: Build then Deploy to Docker Hub
+      script:
+        - cd user_ubuntu
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - docker build -t sconaway/user_ubuntu .
+        - docker push sconaway/user_ubuntu
+        - docker images
 
 jobs:
   include:
-      Error running Travis-Lint Error: spawn travis ENOENT
-- stage: Build
+    - stage: Build
       script:
        - set -e
        - cd user_ubuntu
