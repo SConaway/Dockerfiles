@@ -41,21 +41,4 @@ jobs:
   include:
     - stage: Build
       script:
-       - set -e
-       - cd user_ubuntu
-       - docker build -t sconaway/user_ubuntu .
-       - docker run -d --name="uu" sconaway/user_ubuntu bash
-       - sleep 5
-       - docker logs uu
-       - docker stop uu
-       - docker images
-       - cd ..
-       - cd user_ubuntu_test
-       - docker build -t user_ubuntu_test .
-       - docker run -d --name="uut" user_ubuntu_test
-       - sleep 120
-       - docker logs uut
-       - docker stop uut
-       - docker images
-       - docker push sconaway/user_ubuntu
-       - docker images
+       - user_ubuntu/build.sh
